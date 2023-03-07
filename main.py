@@ -10,8 +10,15 @@ treatments=['Blood Work','X-Ray','MRI','Doppler','Ultrasound','Suture']
 
 start= zulu.parse('2023-03-07T23:33:25.656261+00:00')
 initial_eval= start.shift(minutes=15)
+
 #print(start)
-print(initial_eval-start)
+# print(initial_eval-start)
+
+random_treatment= (random.choice(treatments))
+print(random_treatment)
+
+
+
 
 Patient_0001={
 'Name': 'Jon Snow',
