@@ -37,17 +37,20 @@ Patient_0005={
 'Gender': 'M'
 }
 print("Patient Name: "+Patient_0001['Name'])
-print("Gender: "+Patient_0001['Gender'])
 
 intake_time= zulu.parse('2023-03-07T23:33:25.656261+00:00')
 print("Action: Intake")
 print(intake_time)
 start= intake_time.shift(hours=0,minutes=15)
 print("Action: Evaluation")
+
+if Patient_0001['Gender']=='F':
+    print(female_intake)
+if Patient_0001['Gender']=='M':
+    print(male_intake)    
+
 print(start)
 
-# #print(start)
-# # print(initial_eval-start)
 
 random_treatment= (random.choice(treatments))
 random_treatment_two= (random.choice(treatments))
@@ -70,6 +73,24 @@ if random_treatment=='Suture':
 if random_treatment=='Observation':
     print(observation)
 
+
+if random_treatment=='MRI':
+    time_after_first_treatment= start.shift(hours=1)
+if random_treatment=='X-Ray':
+    time_after_first_treatment= start.shift(minutes=45)
+if random_treatment=='Blood Work':
+    time_after_first_treatment= start.shift(minutes=15)
+if random_treatment=='Doppler':
+    time_after_first_treatment= start.shift(minutes=45)
+if random_treatment=='Ultrasound':
+    time_after_first_treatment= start.shift(hours=1)
+if random_treatment=='Suture':
+    time_after_first_treatment= start.shift(minutes=30)
+if random_treatment=='Observation':
+    time_after_first_treatment= start.shift(hours=24)
+
+print(time_after_first_treatment)
+
 print("Action: Treatment")
 
 if random_treatment_two=='MRI':
@@ -86,6 +107,25 @@ if random_treatment_two=='Suture':
     print(suture)
 if random_treatment_two=='Observation':
     print(observation)
+
+
+if random_treatment_two=='MRI':
+    time_after_second_treatment=time_after_first_treatment.shift(hours=1)
+if random_treatment_two=='X-Ray':
+    time_after_second_treatment= time_after_first_treatment.shift(minutes=45)
+if random_treatment_two=='Blood Work':
+    time_after_second_treatment= time_after_first_treatment.shift(minutes=15)
+if random_treatment_two=='Doppler':
+    time_after_second_treatment= time_after_first_treatment.shift(minutes=45)
+if random_treatment_two=='Ultrasound':
+    time_after_second_treatment= time_after_first_treatment.shift(hours=1)
+if random_treatment_two=='Suture':
+    time_after_second_treatment= time_after_first_treatment.shift(minutes=30)
+if random_treatment_two=='Observation':
+    time_after_second_treatment= time_after_first_treatment.shift(hours=24)
+
+
+print(time_after_second_treatment)  
 
 print("Action: Treatment")
 
@@ -104,40 +144,6 @@ if random_treatment_three=='Suture':
 if random_treatment_three=='Observation':
     print(observation)
 
-
-if random_treatment=='MRI':
-    time_after_first_treatment= start.shift(hours=1)
-if random_treatment=='X-Ray':
-    time_after_first_treatment= start.shift(minutes=45)
-if random_treatment=='Blood Work':
-    time_after_first_treatment= start.shift(minutes=15)
-if random_treatment=='Doppler':
-    time_after_first_treatment= start.shift(minutes=45)
-if random_treatment=='Ultrasound':
-    time_after_first_treatment= start.shift(hours=1)
-if random_treatment=='Suture':
-    time_after_first_treatment= start.shift(minutes=30)
-if random_treatment=='Observation':
-    time_after_first_treatment= start.shift(hours=24)
-
-print(time_after_first_treatment)
-    
-if random_treatment_two=='MRI':
-    time_after_second_treatment=time_after_first_treatment.shift(hours=1)
-if random_treatment_two=='X-Ray':
-    time_after_second_treatment= time_after_first_treatment.shift(minutes=45)
-if random_treatment_two=='Blood Work':
-    time_after_second_treatment= time_after_first_treatment.shift(minutes=15)
-if random_treatment_two=='Doppler':
-    time_after_second_treatment= time_after_first_treatment.shift(minutse=45)
-if random_treatment_two=='Ultrasound':
-    time_after_second_treatment= time_after_first_treatment.shift(hours=1)
-if random_treatment_two=='Suture':
-    time_after_second_treatment= time_after_first_treatment.shift(minutes=30)
-if random_treatment_two=='Observation':
-    time_after_second_treatment= time_after_first_treatment.shift(hours=24)
-
-print(time_after_second_treatment)   
 
 if random_treatment_three=='MRI':
     time_after_third_treatment= time_after_second_treatment.shift(hours=1)
@@ -156,9 +162,20 @@ if random_treatment_three=='Observation':
 
 print(time_after_third_treatment)
 
+discharge=time_after_third_treatment.shift(hours=2)
 
-print(Patient_0002['Name'])
-print(Patient_0002['Gender'])
+print("Action: Discharge")
+print(discharge)
+
+total_time=discharge-intake_time
+txt='Patient {} stayed for {} and received 3 treatments.'
+print(txt.format(Patient_0001['Name'],total_time))
+
+print("")
+print("")
+print("")
+
+
 
 
 
